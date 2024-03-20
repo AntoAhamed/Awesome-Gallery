@@ -14,10 +14,21 @@ import img8 from './Images/image-8.webp'
 import img9 from './Images/image-9.webp'
 import img10 from './Images/image-10.jpeg'
 import img11 from './Images/image-11.jpeg'
+import img12 from './Images/1.jpg'
+import img13 from './Images/2.jpg'
+import img14 from './Images/3.jpg'
+import img15 from './Images/4.jpg'
+import img16 from './Images/5.jpg'
+import img17 from './Images/6.jpg'
+import img18 from './Images/7.jpg'
+import img19 from './Images/8.jpg'
+import img20 from './Images/9.jpg'
+import img21 from './Images/10.jpg'
+import img22 from './Images/11.jpg'
 
 const Gallery = () => {
   //Include all images in images
-  const [images, setImages] = useState([img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11]);
+  const [images, setImages] = useState([img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img18, img13, img14, img15, img16, img17, img12, img19, img20, img21, img22]);
 
   //To include the selected images
   const [selectedImages, setSelectedImages] = useState([]);
@@ -54,9 +65,10 @@ const Gallery = () => {
   //Add image card
   const addImageCard = (
     <Col xs={6} sm={4} md={3} lg={2} className="mb-4">
-      <Card className="image-card add-image-card">
+      <Card className="addImg">
         <Card.Body>
-          <p data-content='Add Image'></p>
+          {/*<p data-content='Add Image'></p>*/}
+          <p className='text-secondary'>Add Image</p>
         </Card.Body>
       </Card>
     </Col>
@@ -78,7 +90,7 @@ const Gallery = () => {
                   <Button variant="danger" onClick={deleteSelectedImages}>Delete Selected</Button>
                 </div>
               </div>
-            ) : <h3 className='heading'>Awesome Gallery 2023</h3>
+            ) : <h3 className='heading'>Awesome Gaming Gallery 2024</h3>
         }
       </Row>
       <Row>

@@ -24,9 +24,9 @@ const Image = (props) => {
 
     return (
         <Col xs={6} sm={4} md={3} lg={2} className="mb-4" ref={(node) => drag(drop(node))}>
-            <Card className={`image-card ${isFeatured ? 'featured-image' : ''} ${isSelected ? 'selected' : ''}`}>
+            <Card className={`image-card ${isFeatured ? 'featured-image' : ''} ${isSelected ? 'selected' : ''}`} style={{height: '90%'}}>
                 <input type="checkbox" checked={isSelected} className="checkbox-top-right" onChange={() => handleCheckboxChange(index)} />
-                <Card.Img variant="top" src={image} alt={`Image ${index}`} />
+                <Card.Img variant="top" src={image} alt={`Image ${index}`} height={'100%'} />
             </Card>
         </Col>
     )
