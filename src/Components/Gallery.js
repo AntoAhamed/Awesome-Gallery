@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Col, Row, Button } from 'react-bootstrap';
 import Image from './Image';
 
@@ -35,6 +35,21 @@ const Gallery = () => {
 
   //Set the first image as the default featured image
   const [featuredIndex, setFeaturedIndex] = useState(0);
+
+  //To set gallery name
+  const [name, setName] = useState('Gaming');
+  const [newName, setNewName] = useState('');
+
+  //To change name
+  const changeName = () => {
+    if (newName !== '') {
+      setName(newName);
+      setNewName('');
+    }
+  }
+
+  //To change title with name change
+  document.title = `Awesome ${name} Gallery 2024`;
 
   //To set images during drag and drop
   const moveImage = (fromIndex, toIndex) => {
@@ -75,34 +90,41 @@ const Gallery = () => {
   );
 
   return (
-    <div className="gallery-container">
-      <Row>
-        {
-          /*If the length of selectedImages is greater than 0 then the selected info and the delete button will be shown 
-          otherwise the heading will be shown*/
-          selectedImages.length > 0 ?
-            (
-              <div className="selection-info">
-                <div>
-                  {selectedImages.length === 1 ? <p>{selectedImages.length} image selected</p> : <p>{selectedImages.length} images selected</p>}
+    <>
+      <div className='input-container'>
+        <input type='text' value={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Change The Underlined Portion' />
+        <button onClick={changeName}>Change</button>
+      </div>
+      <div className="gallery-container">
+        <Row>
+          {
+            /*If the length of selectedImages is greater than 0 then the selected info and the delete button will be shown 
+            otherwise the heading will be shown*/
+            selectedImages.length > 0 ?
+              (
+                <div className="selection-info">
+                  <div>
+                    {selectedImages.length === 1 ? <p>{selectedImages.length} image selected</p> : <p>{selectedImages.length} images selected</p>}
+                  </div>
+                  <div className="delete-button-container">
+                    <Button variant="danger" onClick={deleteSelectedImages}>Delete Selected</Button>
+                  </div>
                 </div>
-                <div className="delete-button-container">
-                  <Button variant="danger" onClick={deleteSelectedImages}>Delete Selected</Button>
-                </div>
-              </div>
-            ) : <h3 className='heading'>Awesome Gaming Gallery 2024</h3>
-        }
-      </Row>
-      <Row>
-        {//Here map function is used
-          images.map((image, index) => {
-            return (<Image key={index} index={index} image={image} moveImage={moveImage} handleCheckboxChange={handleCheckboxChange}
-              isFeatured={index === featuredIndex} isSelected={selectedImages.includes(index)} />)
-          })}
-        {//It will be shown at the last position of all images
-          addImageCard}
-      </Row>
-    </div>
+              ) : <h3 className='heading'>Awesome <u>{name}</u> Gallery 2024</h3>
+          }
+        </Row>
+        <Row>
+          {//Here map function is used
+            images.map((image, index) => {
+              return (<Image key={index} index={index} image={image} moveImage={moveImage} handleCheckboxChange={handleCheckboxChange}
+                isFeatured={index === featuredIndex} isSelected={selectedImages.includes(index)} />)
+            })}
+          {//It will be shown at the last position of all images
+            addImageCard}
+        </Row>
+      </div>
+    </>
+
   )
 }
 
